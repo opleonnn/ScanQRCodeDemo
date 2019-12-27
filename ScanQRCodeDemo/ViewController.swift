@@ -15,6 +15,9 @@ class ViewController: UIViewController {
     // MARK: - Properties
 
     var session = AVCaptureSession()
+
+    // MARK: - IBOutlets
+
     @IBOutlet weak var borderViewWidthConstraint: NSLayoutConstraint!
     @IBOutlet weak var borderViewHeightConstraint: NSLayoutConstraint!
 
@@ -50,7 +53,7 @@ class ViewController: UIViewController {
 
         // 坐标转换规则
         // 设有效区域坐标: let validRect = CGRect(x, y, w, h)，预览图层的坐标: let preViewRect = CGRect(0, 0, W, H)
-        // 那么感兴趣区域 let rectOfInterest = CGRect(y / H, (W - (w + x)) / W, h / H, w / W)
+        // 那么感兴趣区域坐标: let rectOfInterest = CGRect(y / H, (W - (w + x)) / W, h / H, w / W)
         let destinationX = scanRect.origin.y / screenBounds.height
         let destinationY = (screenBounds.width - (scanRect.width + scanRect.origin.x)) / screenBounds.width
         let destinationWidth = scanRect.height / screenBounds.height
@@ -72,6 +75,7 @@ class ViewController: UIViewController {
     }
 }
 
+// MARK: - AVCaptureMetadataOutputObjectsDelegate
 extension ViewController: AVCaptureMetadataOutputObjectsDelegate {
     func metadataOutput(_ output: AVCaptureMetadataOutput, didOutput metadataObjects: [AVMetadataObject], from connection: AVCaptureConnection) {
         /// 扫描数据
