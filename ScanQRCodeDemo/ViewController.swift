@@ -77,7 +77,8 @@ class ViewController: UIViewController {
 
 // MARK: - AVCaptureMetadataOutputObjectsDelegate
 extension ViewController: AVCaptureMetadataOutputObjectsDelegate {
-    func metadataOutput(_ output: AVCaptureMetadataOutput, didOutput metadataObjects: [AVMetadataObject], from connection: AVCaptureConnection) {
+
+    func metadataOutput(_ output: AVCaptureMetadataOutput, didOutput metadataObjects: [AVMetadataObject], from connection: AVCaptureConnection) { // swiftlint:disable:this line_length
         /// 扫描数据
         guard
             let data = metadataObjects.first as? AVMetadataMachineReadableCodeObject,
